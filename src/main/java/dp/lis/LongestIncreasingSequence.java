@@ -7,13 +7,14 @@ package dp.lis;
 
 public class LongestIncreasingSequence {
     public static void main(String[] args) {
-        new LongestIncreasingSequence().lengthOfLIS(new int[] {1,3,6,7,9,4,10,4});
+        new LongestIncreasingSequence().lengthOfLIS(new int[] {1,2,4,3,5,4,7,2});
     }
 
     int globalMax = 1;
 
     public int lengthOfLIS(int[] nums) {
         Integer[] cache = new Integer[nums.length];
+        lengthOfLIS(nums, nums.length -1,cache);
         return globalMax;
     }
 
