@@ -39,6 +39,7 @@ public class SegmentTree {
         if(qLow<=low && qHigh>=high){
 
         }
+        return -1;
     }
 
     public static void main(String[] args) {
