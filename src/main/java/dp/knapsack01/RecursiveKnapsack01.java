@@ -25,8 +25,8 @@ public class RecursiveKnapsack01 {
         // base case
         if (index == -1 || capacity <= 0)
             return 0;
-        if(cache[capacity][index]!=null)
-            return cache[capacity][index];
+        if(cache[index][capacity]!=null)
+            return cache[index][capacity];
 
         int profit1 = 0;
         if (capacity - weights[index] >= 0) {
@@ -34,7 +34,7 @@ public class RecursiveKnapsack01 {
         }
         int profit2 = knapsackRecursive(capacity, index - 1,cache);
         int profit = Math.max(profit1, profit2);
-        cache[capacity][index] = profit;
+        cache[index][capacity] = profit;
         return profit;
     }
 
@@ -46,7 +46,8 @@ public class RecursiveKnapsack01 {
                 .profits(profits)
                 .weights(weights)
                 .build();
-
+        Integer[][] cache = new Integer[profits.length][6];
+        knapsack01.solveKnapsack(5,cache );
         int[] capacities = new int[]{4,5,6,7,8,9,10,12,14,15,14,2,1,0,-1};
         List<CompletableFuture<Integer>> futures = new ArrayList<>();
         long startTime = System.currentTimeMillis();
