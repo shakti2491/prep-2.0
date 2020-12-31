@@ -7,6 +7,8 @@ package dp.lis;
 
 public class LongestIncreasingSequence {
     public static void main(String[] args) {
+        String l = new String();
+        Integer vl = Integer.valueOf(l);
         new LongestIncreasingSequence().lengthOfLIS(new int[] {1,2,4,3,5,4,7,2});
     }
 

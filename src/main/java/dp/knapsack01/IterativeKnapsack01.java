@@ -16,25 +16,38 @@ import lombok.RequiredArgsConstructor;
 public class IterativeKnapsack01 {
     private final int[] profits;
     private final int[] weights;
+    private final int size;
 
     public int solveKnapsack(int capacity) {
-        return knapsackOptimize(capacity);
+        return knapsackIterative(capacity);
     }
 //runtime O(nC)
     // space O(nC)
-    private int knapsackIterative(int capacity){
-        int[][] cache = new int[profits.length+1][capacity+1];
-        int n = profits.length;
-        for(int i = 1; i<=n;i++){
-            for(int j = 1; j<=capacity;j++){
-                if(weights[i-1]>j){
-                   cache[i][j] = cache[i-1][j];
+
+    /*
+
+    Define M[i,w] to be the maximum value
+    that can be attained with weight less than or equal to w
+     using items up to i (first i items).
+
+  m[0, w]=0
+  m[i, w]=  m[i-1, w] if w_{i}>w  (the new item is more than the current weight limit)
+  m[i, w]=  max(m[i-1, w], m[i-1,w-w_{i}]+v_{i}) if  w_{i} <= w.
+     */
+
+    private int knapsackIterative(int maxCapacity){
+        int[][] M = new int[profits.length+1][maxCapacity+1];
+        for(int element = 1; element<=size;element++){
+            for(int capacity = 1; capacity<=maxCapacity;capacity++){
+                if(weights[element-1]>capacity){
+                   M[element][capacity] = M[element-1][capacity];
                 }else{
-                    cache[i][j] = Math.max(cache[i-1][j], profits[i-1]+cache[i-1][j-weights[i-1]]);
+                    M[element][capacity] = Math.max(M[element-1][capacity],
+                            profits[element-1]+M[element-1][capacity-weights[element-1]]);
                 }
             }
         }
-        return cache[n][capacity];
+        return M[size][maxCapacity];
     }
 
 
@@ -58,8 +71,9 @@ public class IterativeKnapsack01 {
         IterativeKnapsack01 knapsack01 = IterativeKnapsack01.builder()
                 .profits(profits)
                 .weights(weights)
+                .size(profits.length)
                 .build();
-        System.out.println("Profit -->"+knapsack01.solveKnapsack(5));
+        System.out.println("Profit -->"+knapsack01.solveKnapsack(15));
 
     }
 }

@@ -8,16 +8,27 @@ import lombok.RequiredArgsConstructor;
 public class RecursiveUnboundedKnapsack {
     private final int weights[];
     private final int profits[];
+    private final int size;
+
 
 
     public int solveKnapsack(int capacity, Integer[][] cache) {
-        return knapsackRecursive(capacity, profits.length - 1,cache);
+        return knapsack3(capacity);
     }
 
     public int solveKnapsack2(int capacity) {
-        return knapsackRecursive2(capacity, profits.length - 1);
+        return knapsack2(capacity, profits.length - 1);
     }
-    private int knapsackRecursive(int capacity, int i, Integer[][] cache) {
+
+    /*
+dp[i, w] = max(dp[i - 1, w], dp[i, w - weights[i]] + val[i])
+
+Result = dp[n - 1, W], where n = total number of items, W = weight we need to put in knapsack
+
+Base case:
+dp[i, 0] = 0, for all i. The maximum value we can get is 0 when we are to put 0 weight in knapsack.
+ */
+    private int knapsack1(int capacity, int i, Integer[][] cache) {
 
 
 
@@ -29,15 +40,15 @@ public class RecursiveUnboundedKnapsack {
 
         int profit1 = 0;
         if(weights[i]<=capacity)
-            profit1 = knapsackRecursive(capacity-weights[i],i,cache)+profits[i];
+            profit1 = knapsack1(capacity-weights[i],i,cache)+profits[i];
 
-        int profit2 = knapsackRecursive(capacity,i-1,cache);
+        int profit2 = knapsack1(capacity,i-1,cache);
         int profit = Math.max(profit1, profit2);
         cache[i][capacity] = profit;
         return profit;
     }
 
-    private int knapsackRecursive2(int capacity, int index) {
+    private int knapsack2(int capacity, int index) {
         if(capacity<=0 || index <0)
             return 0;
 
@@ -46,15 +57,35 @@ public class RecursiveUnboundedKnapsack {
             int i = 1;
             while(weights[index]*i<=capacity){
                 profit1 = Math.max(profit1,
-                        knapsackRecursive2(capacity-weights[index]*i,
+                        knapsack2(capacity-weights[index]*i,
                                 index-1)+i*profits[index]);
                 i++;
             }
         }
-        int profit2 = knapsackRecursive2(capacity,index-1);
+        int profit2 = knapsack2(capacity,index-1);
         return Math.max(profit1,profit2);
 
     }
+    /*
+
+    dp[w] = max(dp[w - weights[i]] + val[i], // include item i
+                dp[w]) // do not include item i
+            where i varies from 0 to n-1 such that:
+            weights[i] <= w
+
+     */
+    private int knapsack3(int capacity){
+        if(capacity<=0)
+            return 0;
+
+        int profit = 0;
+        for(int i =0;i<size;i++){
+            if(weights[i]<=capacity)
+                profit = Math.max(profit,knapsack3(capacity-weights[i])+profits[i]);
+        }
+       return profit;
+    }
+
 
         public static void main(String[] args) {
         int[] profits = {1,4,6,8};
@@ -63,6 +94,7 @@ public class RecursiveUnboundedKnapsack {
         RecursiveUnboundedKnapsack unboundedKnapsack = RecursiveUnboundedKnapsack.builder()
                 .weights(weights)
                 .profits(profits)
+                .size(profits.length)
                 .build();
 
         Integer[][] cache =new Integer[profits.length][16];
