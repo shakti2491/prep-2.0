@@ -1,0 +1,31 @@
+1.The Chain of Responsibility pattern allows for objects to implement a common interface
+and for each implementation to delegate on to the next one if appropriate
+
+2.This then allows us to build a chain of implementations,
+where each one performs some actions before or after the call to the next element in the chain
+
+3. Chain of Responsibility as a design pattern consisting of
+“a source of command objects and a series of processing objects”.
+
+4. The Chain of Responsibility pattern is handy for:
+   Decoupling a sender and receiver of a command
+   Picking a processing strategy at processing-time
+
+
+
+Intent
+1. Avoid coupling the sender of a request to its receiver by giving more than one object a chance to
+handle the request. Chain the receiving objects and pass the request along the chain until an object
+handles it.
+3. Launch-and-leave requests with a single processing pipeline that contains many possible handlers.
+3. An object-oriented linked list with recursive traversal.
+
+/** very important
+
+Do not use Chain of Responsibility when each request is only handled by one handler, or,
+ when the client object knows which service object should handle the request.
+
+**/
+
+
+ Use the pattern when it’s essential to execute several handlers in a particular order.
