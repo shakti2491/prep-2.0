@@ -37,6 +37,30 @@ public class Permutation {
 
     }
 
+    private  void permuteHelper(char[] chars, List<Character> chosen, boolean[] discovered) {
+
+        if (chosen.size() == chars.length) {
+            chosen.forEach(System.out::print);
+            System.out.println();
+        } else {
+
+            for (int i = 0; i < chars.length; i++) {
+                // i have chosen a thing
+                if (!discovered[i]) {
+                    char c = chars[i];
+                    chosen.add(chars[i]);
+                    discovered[i] = true;
+                    // permute on remaining or explore on remaining
+                    permuteHelper(chars, chosen, discovered);
+                    // i m putting the  chosen one back for it to be chosen in next permutation
+                    chosen.remove(c);
+                    discovered[i] = false;
+                }
+            }
+        }
+    }
+
+
     private void swap(int[] arr, int i, int j){
         int temp = arr[j];
         arr[j] = arr[i];
