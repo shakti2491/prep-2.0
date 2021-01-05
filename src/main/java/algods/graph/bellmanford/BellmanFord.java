@@ -1,7 +1,5 @@
 package algods.graph.bellmanford;
 
-import java.util.Arrays;
-
 public class BellmanFord {
     public void singleSourceShortestPath(int[][] edgeWithWeights, int V, int src){
         // Initialize distance of all vertices as infinite.
