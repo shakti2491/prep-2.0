@@ -1,4 +1,4 @@
-package algods.graph.sscs;
+package algods.graph.sccs;
 
 import algods.graph.utils.GraphUtils;
 

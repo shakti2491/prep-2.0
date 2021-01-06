@@ -1,4 +1,4 @@
-package algods.graph.bellmanford;
+package algods.graph.sssp.bellmanford;
 
 public class BellmanFord {
     public void singleSourceShortestPath(int[][] edgeWithWeights, int V, int src){

@@ -1,4 +1,4 @@
-package algods.graph.dijkstra;
+package algods.graph.sssp.dijkstra;
 
 import java.util.*;
 

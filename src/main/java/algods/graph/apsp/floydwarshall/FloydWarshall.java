@@ -1,4 +1,4 @@
-package algods.graph.floydwarshall;
+package algods.graph.apsp.floydwarshall;
 
 public class FloydWarshall {
     private static int INF = (int)1e9;
