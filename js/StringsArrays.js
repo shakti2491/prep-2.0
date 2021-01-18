@@ -24,4 +24,37 @@ function flatten(nestedArray) {
    return newArray;
 }
 
-console.log(flatten([ [ [ [1], 2], 3], [4], [], [[5]]]));
+
+function removeDupes(str){
+    const uniqueCharacters = new Set(str);
+    return Array.from(uniqueCharacters).join('');
+}
+
+
+function highestFrequency(strings){
+    const frequencies = {};
+    let maxFrequency = 0;
+    let mostFrequentString = string[0];
+
+    for(let i =0;i<strings.length;i++){
+        const thisStr = strings[i];
+
+        if(frequencies[thisStr] === undefined){
+            frequencies[thisStr] = 1;
+        }else{
+            frequencies[thisStr]++;
+        }
+        if(frequencies[thisStr]>maxFrequency){
+            maxFrequency = frequencies[thisStr];
+            mostFrequentString = thisStr;
+        }
+    }
+    return mostFrequentString;
+}
+
+function rotation(str1, str2){
+    return str1.length === str2.length && (str2+str2).includes(str1);
+}
+
+
+console.log(rotation("rotation" ,"tionrota"));
