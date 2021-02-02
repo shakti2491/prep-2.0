@@ -27,9 +27,9 @@ public class CoinChangeTotalCombination {
 
     public static int totalCombinations2(int [] coins, int amount){
         int n = coins.length;
-        int[][] cache = new int[n+1][amount+1];
+        int[][] dp = new int[n+1][amount+1];
         for(int i = 0;i<=n;i++)
-            cache[i][0] = 1;
+            dp[i][0] = 1;
 
 
         for(int index = 1; index <=n;index++){
@@ -39,7 +39,7 @@ public class CoinChangeTotalCombination {
                 algods.dp[i][j] = algods.dp[i - 1][j];
                 */
 
-                cache[index][total] = cache[index-1][total]; // exclude
+                dp[index][total] = dp[index-1][total]; // exclude
 
                 /*
                 ELSE:
@@ -48,12 +48,12 @@ public class CoinChangeTotalCombination {
                         */
 
                 if(coins[index-1]<=total){
-                    if(cache[index][total-coins[index-1]]!=-1)
-                            cache[index][total] += cache[index][total-coins[index-1]];
+                    if(dp[index][total-coins[index-1]]!=-1)
+                            dp[index][total] += dp[index][total-coins[index-1]];
                 }
             }
         }
-        return cache[n][amount];
+        return dp[n][amount];
 
     }
 
