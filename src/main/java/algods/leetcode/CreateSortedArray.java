@@ -26,7 +26,6 @@ public class CreateSortedArray {
             cost+=Math.min(a,b);
             map.put(i,map.getOrDefault(i,0)+1);
         }
-
         return cost;
     }
 }
