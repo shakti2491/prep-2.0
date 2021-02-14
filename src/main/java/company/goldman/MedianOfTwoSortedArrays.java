@@ -21,7 +21,7 @@ public class MedianOfTwoSortedArrays {
             //if partitionX is length of input then there is nothing on right side. Use Integer.MAX_VALE
 
             int maxLeftX = partitionX==0? Integer.MIN_VALUE : nums1[partitionX-1];
-            int minRightX = partitionY==x ? Integer.MAX_VALUE : nums1[partitionX];
+            int minRightX = partitionX==x ? Integer.MAX_VALUE : nums1[partitionX];
 
             int maxLeftY = partitionY == 0 ? Integer.MIN_VALUE : nums2[partitionY-1];
             int minRightY= partitionY == y ? Integer.MAX_VALUE : nums2[partitionY];
@@ -32,7 +32,7 @@ public class MedianOfTwoSortedArrays {
                 if((x+y)%2 == 0)
                     return (double)(Math.max(maxLeftX, maxLeftY)+Math.min(minRightX,minRightY))/2;
                 else{
-                    return Math.max(minRightX,minRightY);
+                    return Math.max(maxLeftX,maxLeftY);
                 }
 
             }

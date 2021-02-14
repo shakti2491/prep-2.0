@@ -1,5 +1,8 @@
 package algods.leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class CountNumberOfTeams {
     public static int numTeams(int[] rating) {
         int i=0;
@@ -22,5 +25,6 @@ public class CountNumberOfTeams {
 
     public static void main(String[] args) {
         numTeams(new int[] {2,5,3,4,1});
+        Queue<Integer> queue = new ArrayDeque<>();
     }
 }

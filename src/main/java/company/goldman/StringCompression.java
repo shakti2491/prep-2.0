@@ -16,4 +16,9 @@ public class StringCompression {
        }
        return write;
     }
+
+    public static void main(String[] args) {
+        System.out.println("bab".compareTo("abab"));
+
+    }
 }
