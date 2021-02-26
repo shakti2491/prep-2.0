@@ -1,0 +1,2 @@
+We want to represent a request or a method call as an object.
+Information about parameters passed and actual operation is encapsulated in a an object called command

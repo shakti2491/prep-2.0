@@ -1,0 +1,18 @@
+1.Big Parking lot
+2 Multiple Entrances and exits
+3 Ticket and Spot allocated at the entrance
+4 Parking Spot should be nearest to the entrance
+5 System should not allow number of vehicles more that parking spot
+6 Parking Spot Types - Handicap, Large, Compact, Electric, Bike
+7 Hourly Rate
+8 Cash or Credit card Accepted
+9 Monitoring
+10 Configurable, Code Reusable
+
+
+Actors
+
+1 Parking Lot System
+2 Entry Exit Terminals - printers payment processors
+3 Parking Spot
+4 Ticket
